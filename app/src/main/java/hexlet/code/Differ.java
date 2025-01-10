@@ -1,30 +1,44 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.TreeSet;
+
 
 public class Differ {
 
-    public static void generate(String Filepath1, String Filepath2) throws IOException {
-        String data1 = getFixture(Filepath1);
-        String data2 = getFixture(Filepath2);
-        Map<String, Object> dataOnMap1= getMap(data1);
-        Map<String, Object> dataOnMap2= getMap(data2);
-        getData(dataOnMap1, dataOnMap2).forEach(System.out::println);
+    public static String generate(String filepath1, String filepath2) throws IOException {
+        String data1 = getFixture(filepath1);
+        String data2 = getFixture(filepath2);
+        Map<String, Object> dataOnMap1 = getMap(data1);
+        Map<String, Object> dataOnMap2 = getMap(data2);
+        List<String> diff = getData(dataOnMap1, dataOnMap2);
+        return String.join("\n", diff);
     }
 
     public static String getFixture(String file) throws IOException {
-        Path filepath = Paths.get(file).toAbsolutePath().normalize();
+        Path filepath = getFixturePath(file);
+
         return Files.readString(filepath);
+    }
+
+    public static Path getFixturePath(String file) {
+        return Paths.get(file);
     }
 
     public static List<String> getData(Map<String, Object> dataOnMap1, Map<String, Object> dataOnMap2) {
         List<String> result = new ArrayList<>();
+        result.add("{");
         Set<String> keys = new TreeSet<>(dataOnMap1.keySet());
         keys.addAll(dataOnMap2.keySet());
         char[] sym = {'+', '-', ' '};
@@ -46,6 +60,7 @@ public class Differ {
                 result.add(sym[1] + string + dataOnMap1.get(key));
             }
         }
+        result.add("}");
         return result;
     }
 
@@ -53,7 +68,7 @@ public class Differ {
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> map = new HashMap<>();
         try {
-            map = objectMapper.readValue(data, Map.class);
+            map = objectMapper.readValue(data, new TypeReference<>() { });
         } catch (IOException e) {
             e.printStackTrace();
         }
