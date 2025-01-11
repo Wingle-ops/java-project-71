@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("jacoco")
     id("checkstyle")
     application
 }
@@ -10,6 +11,7 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
 }
+
 
 checkstyle {
     toolVersion = "10.12.4"
@@ -32,4 +34,12 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport) // report is always generated after tests run
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+    }
 }
