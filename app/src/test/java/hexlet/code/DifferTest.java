@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.converter.YamlToJson;
 import org.junit.Test;
 import java.io.IOException;
 

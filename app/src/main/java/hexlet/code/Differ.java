@@ -2,7 +2,6 @@ package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hexlet.code.converter.YamlToJson;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,7 +13,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeSet;
-
 
 public class Differ {
 
@@ -29,6 +27,7 @@ public class Differ {
 
     public static String getFixture(String file) throws IOException {
         Path filepath = getFixturePath(file);
+        System.out.println("Проверка файла: " + filepath);
         if (!Files.exists(filepath)) {
             throw new IOException("Файл не найден: " + filepath);
         }
@@ -36,7 +35,7 @@ public class Differ {
     }
 
     public static Path getFixturePath(String file) {
-        return Paths.get(file);
+        return Paths.get("src/main/java/hexlet/code/resources", file);
     }
 
     public static List<String> getData(Map<String, Object> dataOnMap1, Map<String, Object> dataOnMap2) {
