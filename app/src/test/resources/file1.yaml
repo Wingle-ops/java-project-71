@@ -1,0 +1,4 @@
+host: wingle.ops
+ip: 192.168.0.1
+ipIsTrue: true
+number: 88888888

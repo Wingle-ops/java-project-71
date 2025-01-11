@@ -2,6 +2,7 @@ package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import hexlet.code.converter.YamlToJson;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,8 +19,8 @@ import java.util.TreeSet;
 public class Differ {
 
     public static String generate(String filepath1, String filepath2) throws IOException {
-        String data1 = getFixture(filepath1);
-        String data2 = getFixture(filepath2);
+        String data1 = YamlToJson.checkFormat(filepath1);
+        String data2 = YamlToJson.checkFormat(filepath2);
         Map<String, Object> dataOnMap1 = getMap(data1);
         Map<String, Object> dataOnMap2 = getMap(data2);
         List<String> diff = getData(dataOnMap1, dataOnMap2);
@@ -28,7 +29,9 @@ public class Differ {
 
     public static String getFixture(String file) throws IOException {
         Path filepath = getFixturePath(file);
-
+        if (!Files.exists(filepath)) {
+            throw new IOException("Файл не найден: " + filepath);
+        }
         return Files.readString(filepath);
     }
 
