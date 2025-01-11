@@ -16,9 +16,6 @@ jobs:
           node-version: '23.x'
           cache: 'npm'
 
-      - name: Create secret
-        run: echo "Секрет: ${{ secrets.HEXLET_ID }}"
-
       - name: build
         run: make -C app build
 
