@@ -4,3 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/b6ca7eeb590c04cd64d3/maintainability)](https://codeclimate.com/github/Wingle-ops/java-project-71/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/b6ca7eeb590c04cd64d3/test_coverage)](https://codeclimate.com/github/Wingle-ops/java-project-71/test_coverage)
+
+Шаг 8
+https://asciinema.org/a/gC6S162zpbqiMM8HpNAz0j92a
+

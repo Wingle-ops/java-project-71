@@ -18,15 +18,15 @@ public class DifferTest {
 
     @Test
     public void test2() throws IOException {
-        String filepathYaml1 = "testFile1.yaml";
-        String filepathYaml2 = "testFile2.yaml";
+        String filepathYaml1 = "testFile1.yml";
+        String filepathYaml2 = "testFile2.yml";
         String result = Differ.generate(filepathYaml1, filepathYaml2);
         assertEquals(TestExpected.getTestFile(), result, error);
     }
 
     @Test
     public void test3() throws IOException {
-        String filepathYaml1 = "testFile1.yaml";
+        String filepathYaml1 = "testFile1.yml";
         String filepathJson2 = "testFile2.json";
         String result = Differ.generate(filepathYaml1, filepathJson2);
         assertEquals(TestExpected.getTestFile(), result, error);

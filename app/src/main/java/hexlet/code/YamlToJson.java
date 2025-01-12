@@ -8,7 +8,7 @@ import java.io.IOException;
 public class YamlToJson {
 
     public static String checkFormat(String file) throws IOException {
-        if (file.endsWith(".yaml") || file.endsWith(".yml")) {
+        if (file.endsWith(".yml")) {
             String convert = Parser.getFixture(file);
             return yamlToJson(convert);
         }
