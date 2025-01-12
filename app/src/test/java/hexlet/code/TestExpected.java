@@ -4,15 +4,13 @@ public class TestExpected {
 
     public static String getTestFile() {
         return """
-                  {
-                  - host: wingle.ops
-                  + host: wingle.aps
-                    ip: 192.168.0.1
-                    ipIsTrue: true
-                  - number": 88888888
-                  + timeout: 20
-                  + linux: true
-                  + years: 22
+                {
+                - follow: false
+                  host: hexlet.io
+                - proxy: 123.234.53.22
+                - timeout: 50
+                + timeout: 20
+                + verbose: true
                 }""";
     }
 }

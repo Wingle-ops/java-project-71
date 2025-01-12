@@ -1,9 +1,8 @@
 package hexlet.code;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import java.io.IOException;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
@@ -11,22 +10,25 @@ public class DifferTest {
 
     @Test
     public void test1() throws IOException {
-        String filepathJson1 = "src/test/resources/file1.json";
-        String filepathJson2 = "src/test/resources/file1.json";
+        String filepathJson1 = "testFile1.json";
+        String filepathJson2 = "testFile2.json";
         String result = Differ.generate(filepathJson1, filepathJson2);
-        assertEquals(error, TestExpected.getTestFile(), result);
+        assertEquals(TestExpected.getTestFile(), result, error);
     }
 
     @Test
-    public void test2() {
-        String filepathJson1 = "src/test/resources/file1.json";
-        String filepathYaml2 = "src/test/resources/file2.yaml";
-        try {
-            String filepathJson2 = YamlToJson.yamlToJson(filepathYaml2);
-            String result = Differ.generate(filepathJson1, filepathJson2);
-            assertEquals(error, TestExpected.getTestFile(), result);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public void test2() throws IOException {
+        String filepathYaml1 = "testFile1.yaml";
+        String filepathYaml2 = "testFile2.yaml";
+        String result = Differ.generate(filepathYaml1, filepathYaml2);
+        assertEquals(TestExpected.getTestFile(), result, error);
+    }
+
+    @Test
+    public void test3() throws IOException {
+        String filepathYaml1 = "testFile1.yaml";
+        String filepathJson2 = "testFile2.json";
+        String result = Differ.generate(filepathYaml1, filepathJson2);
+        assertEquals(TestExpected.getTestFile(), result, error);
     }
 }

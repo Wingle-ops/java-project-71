@@ -4,38 +4,21 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.HashMap;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Differ {
 
-    public static String generate(String filepath1, String filepath2) throws IOException {
-        String data1 = YamlToJson.checkFormat(filepath1);
-        String data2 = YamlToJson.checkFormat(filepath2);
+    public static String generate(String file1, String file2) throws IOException {
+        String data1 = YamlToJson.checkFormat(file1);
+        String data2 = YamlToJson.checkFormat(file2);
         Map<String, Object> dataOnMap1 = getMap(data1);
         Map<String, Object> dataOnMap2 = getMap(data2);
         List<String> diff = getData(dataOnMap1, dataOnMap2);
         return String.join("\n", diff);
-    }
-
-    public static String getFixture(String file) throws IOException {
-        Path filepath = getFixturePath(file);
-        System.out.println("Проверка файла: " + filepath);
-        if (!Files.exists(filepath)) {
-            throw new IOException("Файл не найден: " + filepath);
-        }
-        return Files.readString(filepath);
-    }
-
-    public static Path getFixturePath(String file) {
-        return Paths.get("src/main/java/hexlet/code/resources", file);
     }
 
     public static List<String> getData(Map<String, Object> dataOnMap1, Map<String, Object> dataOnMap2) {
@@ -68,11 +51,11 @@ public class Differ {
 
     public static Map<String, Object> getMap(String data) {
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> map;
         try {
             map = objectMapper.readValue(data, new TypeReference<>() { });
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Произошла ошибка во время конвертации в Map");
         }
         return map;
     }

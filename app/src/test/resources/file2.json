@@ -1,8 +1,0 @@
-{
-  "host": "wingle.aps",
-  "ip": "192.168.0.1",
-  "ipIsTrue": true,
-  "years": 22,
-  "timeout": 20,
-  "linux": true
-}

@@ -7,17 +7,17 @@ import java.io.IOException;
 
 public class YamlToJson {
 
-    public static String checkFormat(String filePath) throws IOException {
-        if (filePath.endsWith(".yaml") || filePath.endsWith(".yml")) {
-            return yamlToJson(filePath);
+    public static String checkFormat(String file) throws IOException {
+        if (file.endsWith(".yaml") || file.endsWith(".yml")) {
+            String convert = Parser.getFixture(file);
+            return yamlToJson(convert);
         }
-        return Differ.getFixture(filePath);
+        return Parser.getFixture(file);
     }
 
     public static String yamlToJson(String file) throws JsonProcessingException {
         ObjectMapper yamlReader = new ObjectMapper(new YAMLFactory());
         Object obj = yamlReader.readValue(file, Object.class);
-
         ObjectMapper jsonWriter = new ObjectMapper();
         return jsonWriter.writeValueAsString(obj);
     }
