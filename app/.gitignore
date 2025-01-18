@@ -1,3 +1,9 @@
+app/gradle
+app/build.gradle.kts
+app/gradlew
+app/gradlew.bat
+app/settings.gradle.kts
+
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

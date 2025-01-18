@@ -18,7 +18,7 @@ public class Parser {
     public static Path getFixturePath(String file) {
         String path = "src/main/resources/";
         if (file.startsWith("test")) {
-            path = "src/test/resources/";
+            path = "src/test/resources/fixtures/";
         }
         return Paths.get(path, file);
     }
