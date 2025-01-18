@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="hexlet.code.DifferTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-01-12T13:19:29" hostname="mihail-Default-string" time="0.939">
-  <properties/>
-  <testcase name="test1()" classname="hexlet.code.DifferTest" time="0.789"/>
-  <testcase name="test2()" classname="hexlet.code.DifferTest" time="0.136"/>
-  <testcase name="test3()" classname="hexlet.code.DifferTest" time="0.009"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

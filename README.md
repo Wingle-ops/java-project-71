@@ -8,3 +8,13 @@
 Шаг 8
 https://asciinema.org/a/gC6S162zpbqiMM8HpNAz0j92a
 
+Шаг 9
+https://asciinema.org/a/X7Iu8BCz9sb0mI9z2JxCMrIGf
+
+Шаг 10
+https://asciinema.org/a/g3AGgVS4YsW9gShSPOz2PwvLM
+
+Шаг 11
+https://asciinema.org/a/NtGfI8TfDgsU9DnHYby3F1kmX
+
+
