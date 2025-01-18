@@ -20,6 +20,6 @@ public class Parser {
 //        if (file.startsWith("test")) {
 //            path = "src/test/resources/fixtures/";
 //        }
-        return Paths.get("src/main/resources/", file);
+        return Paths.get(file);
     }
 }
