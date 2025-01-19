@@ -16,6 +16,11 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          
+      - name: Test & publish code coverage
+  	run: |
+    	  cd app
+	  ./gradlew jacocoTestReport
 
       - name: Build
         run: make -C app build
