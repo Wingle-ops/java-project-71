@@ -16,6 +16,9 @@ jobs:
 
       - name: Сделать gradlew исполняемым
         run: chmod +x ./app/gradlew
+        
+      - name: Даем полный доступ с файлам
+        run: chmod -R 777 *
 
       - name: Вывести файлы в директории app
         run: ls -la ./app  # Шаг отладки для проверки наличия Makefile
