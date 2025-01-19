@@ -17,7 +17,7 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           
-      - name: Test & publish code coverage
+      - name: Build
   	run: |
     	  cd app
 	  ./gradlew jacocoTestReport
@@ -31,6 +31,6 @@ jobs:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
           JACOCO_SOURCE_PATH: app/src/main/java
         with:
-          coverageCommand: ./app/gradlew jacocoTestReport
+          coverageCommand: ./gradlew jacocoTestReport
           coverageLocations: ${{ github.workspace }}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
           
