@@ -1,14 +1,36 @@
-.PHONY: build run-dist report
+.DEFAULT_GOAL := build-run
+
+setup:
+	gradle wrapper --gradle-version 8.8
+
+clean:
+	./app/gradlew -p app clean
 
 build:
-	./gradlew clean
-	./gradlew installDist
-	./gradlew checkstyleMain
-	./gradlew checkstyleTest
+	./app/gradlew -p app clean build
+
+install:
+	./app/gradlew -p app clean install
 
 run-dist:
-	./build/install/app/bin/app file1.json file2.json
+	@./app/build/install/app/bin/app -h
+
+run:
+	./app/gradlew -p app run
+
+test:
+	./app/gradlew -p app test
 
 report:
-	./gradlew jacocoTestReport
+	./app/gradlew -p app jacocoTestReport
+
+lint:
+	./app/gradlew -p app checkstyleMain
+
+check-deps:
+	./app/gradlew -p app dependencyUpdates -Drevision=release
+
+build-run: build run
+
+.PHONY: build
 

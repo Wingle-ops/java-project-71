@@ -4,6 +4,7 @@ app/build.gradle.kts
 app/gradlew
 app/gradlew.bat
 app/settings.gradle.kts
+.idea
 
 .gradle
 build/
