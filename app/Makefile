@@ -12,3 +12,4 @@ run-dist:
 
 report:
 	./app/gradlew -p ./app/ jacocoTestReport
+
