@@ -7,7 +7,7 @@ clean:
 	./app/gradlew -p ./app/ clean
 
 build:
-	./app/gradlew -p ./app/ build
+	./gradlew build
 
 run:
 	./app/gradlew -p ./app/ run
