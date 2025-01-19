@@ -1,8 +1,7 @@
-name: Java CI
+name: ci
 
 on:
-  - push
-  - pull_request
+  push:
 
 jobs:
   build:
@@ -17,10 +16,10 @@ jobs:
           
       - name: Make gradlew executable
         run: chmod +x ./app/gradlew
+        
+      - name: Build Application
+	run: make -C app build
 
-      - run: make build
-      - run: make lint
-      - run: make test
       - name: Publish code coverage
         uses: paambaati/codeclimate-action@v9.0.0
         env:
