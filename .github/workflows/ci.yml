@@ -17,6 +17,9 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           
+      - name: Make gradlew executable
+        run: chmod +x ./app/gradlew
+          
       - name: Run Jacoco Test Report
         run: cd app && ./gradlew jacocoTestReport  # Обратите внимание на отступ
 
