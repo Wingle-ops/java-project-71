@@ -1,25 +1,25 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+
+import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Map;
 
 public class Parser {
 
-    public static String getFixture(String file) throws IOException {
-        Path filepath = getFixturePath(file);
-        if (!Files.exists(filepath)) {
-            throw new IOException("Файл не найден: " + filepath);
-        }
-        return Files.readString(filepath);
+    public static Map<String, Object> getData(String pathToFile) throws IOException {
+        return pathToFile.endsWith(".json") ? getMapJson(pathToFile) : getMapYml(pathToFile);
     }
 
-    public static Path getFixturePath(String file) {
-        String path = "";
-        if (file.startsWith("test")) {
-            path = "src/test/resources/fixtures/";
-        }
-        return Paths.get(path, file);
+    public static Map<String, Object> getMapJson(String data) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(new File(data), Map.class);
+    }
+
+    public static Map<String, Object> getMapYml(String data) throws IOException {
+        ObjectMapper objectMapper = new YAMLMapper();
+        return objectMapper.readValue(new File(data), Map.class);
     }
 }

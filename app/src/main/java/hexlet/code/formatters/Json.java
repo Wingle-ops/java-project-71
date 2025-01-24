@@ -3,21 +3,17 @@ package hexlet.code.formatters;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.List;
 import java.util.Map;
 
 public class Json {
 
-    public static String getData(Map<String, Object> dataOnMap1, Map<String, Object> dataOnMap2) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        StringBuilder result = new StringBuilder();
+    public static String getData(List<Map<String, Object>> data) {
+        ObjectMapper mapper = new ObjectMapper();
         try {
-            result.append(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataOnMap1));
-            result.append("\n");
-            result.append(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(dataOnMap2));
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(data);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return null;
+            throw new RuntimeException(e);
         }
-        return result.toString();
     }
 }

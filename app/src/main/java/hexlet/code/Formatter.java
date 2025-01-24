@@ -4,15 +4,16 @@ import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
 import hexlet.code.formatters.Json;
 
+import java.util.List;
 import java.util.Map;
 
 public class Formatter {
 
-    public static String getFormat(Map<String, Object> dataOnMap1, Map<String, Object> dataOnMap2, String format) {
+    public static String getFormat(List<Map<String, Object>> data, String format) {
         return switch (format) {
-            case "stylish" -> Stylish.getData(dataOnMap1, dataOnMap2);
-            case "plain" -> Plain.getData(dataOnMap1, dataOnMap2);
-            case "json" -> Json.getData(dataOnMap1, dataOnMap2);
+            case "stylish" -> Stylish.getData(data);
+            case "plain" -> Plain.getData(data);
+            case "json" -> Json.getData(data);
             default -> "stylish";
         };
     }

@@ -1,93 +1,92 @@
 package hexlet.code;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
 
-    private static String error;
-    private static String filepathJson1;
-    private static String filepathJson2;
-    private static String filepathYml1;
-    private static String filepathYml2;
-
-    @BeforeAll
-    public static void beforeAll() {
-        error = "Полученный ответ не соотвествует ожидаемому\n";
-        filepathJson1 = "testFile1.json";
-        filepathJson2 = "testFile2.json";
-        filepathYml1 = "testFile1.yml";
-        filepathYml2 = "testFile2.yml";
-    }
+    private static final String ERROR = "Полученный ответ не соотвествует ожидаемому\n";
 
     @Test
     public void test1() throws IOException { // Тест файлов Json с форматом вывода stylish
         String format = "stylish";
-        String result = Differ.generate(filepathJson1, filepathJson2, format);
-        assertEquals(TestExpected.getTestStylish(), result, error);
+        String answer = Files.readString(Paths.get("src/test/resources/testStylish.stylish")).trim();
+        String result = Differ.generate("testFile1.json", "testFile2.json", format);
+        assertEquals(answer, result, ERROR);
     }
 
     @Test
-    public void test2() throws IOException { // Тест файлов Yml с форматом вывода stylish
+    public void test2() throws IOException { // Тест файлов Json с форматом вывода plain
+        String format = "plain";
+        String answer = Files.readString(Paths.get("src/test/resources/testPlain.plain")).trim();
+        String result = Differ.generate("testFile1.json", "testFile2.json", format);
+        assertEquals(answer, result, ERROR);
+    }
+
+    @Test
+    public void test3() throws IOException { // Тест файлов Json с форматом вывода json
+        String format = "json";
+        String answer = Files.readString(Paths.get("src/test/resources/testJson.json")).trim();
+        String result = Differ.generate("testFile1.json", "testFile2.json", format);
+        assertEquals(answer, result, ERROR);
+    }
+
+    @Test
+    public void test4() throws IOException { // Тест файлов Yml с форматом вывода stylish
         String format = "stylish";
-        String result = Differ.generate(filepathYml1, filepathYml2, format);
-        assertEquals(TestExpected.getTestStylish(), result, error);
+        String answer = Files.readString(Paths.get("src/test/resources/testStylish.stylish")).trim();
+        String result = Differ.generate("testFile1.yml", "testFile2.yml", format);
+        assertEquals(answer, result, ERROR);
     }
 
     @Test
-    public void test3() throws IOException { // Тест различных файлов Json и Yml с форматом вывода stylish
+    public void test5() throws IOException { // Тест файлов Yml с форматом вывода plain
+        String format = "plain";
+        String answer = Files.readString(Paths.get("src/test/resources/testPlain.plain")).trim();
+        String result = Differ.generate("testFile1.yml", "testFile2.yml", format);
+        assertEquals(answer, result, ERROR);
+    }
+
+    @Test
+    public void test6() throws IOException { // Тест файлов Yml с форматом вывода json
+        String format = "json";
+        String answer = Files.readString(Paths.get("src/test/resources/testJson.json")).trim();
+        String result = Differ.generate("testFile1.yml", "testFile2.yml", format);
+        assertEquals(answer, result, ERROR);
+    }
+
+    @Test
+    public void test7() throws IOException { // Тест файлов Json и Yml с форматом вывода stylish
         String format = "stylish";
-        String result = Differ.generate(filepathJson1, filepathYml2, format);
-        assertEquals(TestExpected.getTestStylish(), result, error);
+        String answer = Files.readString(Paths.get("src/test/resources/testStylish.stylish")).trim();
+        String result = Differ.generate("testFile1.json", "testFile2.Yml", format);
+        assertEquals(answer, result, ERROR);
     }
 
     @Test
-    public void test4() throws IOException { // Тест без указания формата вывода
-        String result = Differ.generate(filepathJson1, filepathJson2);
-        assertEquals(TestExpected.getTestStylish(), result, error);
+    public void test8() throws IOException { // Тест файлов Json и Yml с форматом вывода plain
+        String format = "stylish";
+        String answer = Files.readString(Paths.get("src/test/resources/testPlain.plain")).trim();
+        String result = Differ.generate("testFile1.json", "testFile2.Yml", format);
+        assertEquals(answer, result, ERROR);
     }
 
     @Test
-    public void test5() throws IOException { // Тест файлов Json с форматом вывода plain
-        String format = "plain";
-        String result = Differ.generate(filepathJson1, filepathJson2, format);
-        assertEquals(TestExpected.getTestPlain(), result, error);
+    public void test9() throws IOException { // Тест файлов Json и Yml с форматом вывода json
+        String format = "stylish";
+        String answer = Files.readString(Paths.get("src/test/resources/testJson.json")).trim();
+        String result = Differ.generate("testFile1.json", "testFile2.Yml", format);
+        assertEquals(answer, result, ERROR);
     }
 
     @Test
-    public void test6() throws IOException { // Тест файлов Yml с форматом вывода plain
-        String format = "plain";
-        String result = Differ.generate(filepathYml1, filepathYml2, format);
-        assertEquals(TestExpected.getTestPlain(), result, error);
-    }
-
-    @Test
-    public void test7() throws IOException { // Тест различных файлов Json и Yml с форматом вывода plain
-        String format = "plain";
-        String result = Differ.generate(filepathJson1, filepathYml2, format);
-        assertEquals(TestExpected.getTestPlain(), result, error);
-    }
-
-    @Test
-    public void test8() throws IOException { // Тест файлов Json с форматом вывода json
-        String format = "json";
-        String result = Differ.generate(filepathJson1, filepathJson2, format);
-        assertEquals(TestExpected.getTestJson(), result, error);
-    }
-
-    @Test
-    public void test9() throws IOException { // Тест файлов Yml с форматом вывода json
-        String format = "json";
-        String result = Differ.generate(filepathYml1, filepathYml2, format);
-        assertEquals(TestExpected.getTestJson(), result, error);
-    }
-
-    @Test
-    public void test10() throws IOException { // Тест различных файлов Json и Yml с форматом вывода json
-        String format = "json";
-        String result = Differ.generate(filepathJson1, filepathYml2, format);
-        assertEquals(TestExpected.getTestJson(), result, error);
+    public void test10() throws IOException { // Тест файлов Json с форматом вывода по умолчанию
+        String answer = Files.readString(Paths.get("src/test/resources/testJson.json")).trim();
+        String result = Differ.generate("testFile1.json", "testFile2.json");
+        assertEquals(answer, result, ERROR);
     }
 }
