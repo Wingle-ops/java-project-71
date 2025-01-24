@@ -16,12 +16,12 @@ public class Stylish {
             String operation = (String) map.get("operation");
 
             switch (operation) {
-                case "added" -> result.append("\n + ").append(key).append(": ").append(value2);
+                case "added" -> result.append("\n  + ").append(key).append(": ").append(value2);
 
-                case "removed" -> result.append("\n - ").append(key).append(": ").append(value1);
+                case "removed" -> result.append("\n  - ").append(key).append(": ").append(value1);
 
-                case "updated" -> result.append("\n - ").append(key).append(": ").append(value1)
-                                        .append("\n + ").append(key).append(": ").append(value2);
+                case "updated" -> result.append("\n  - ").append(key).append(": ").append(value1)
+                                        .append("\n  + ").append(key).append(": ").append(value2);
 
                 default -> result.append("\n   ").append(key).append(": ").append(value2);
             }
