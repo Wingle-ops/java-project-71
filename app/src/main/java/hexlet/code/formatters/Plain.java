@@ -7,8 +7,6 @@ public class Plain {
 
     public static String getData(List<Map<String, Object>> data) {
         StringBuilder result = new StringBuilder();
-        result.append("{");
-
         for (Map<String, Object> map : data) {
             String key = (String) map.get("key");
             Object value1 = getValue(map.get("value1"));
@@ -16,13 +14,13 @@ public class Plain {
             String operation = (String) map.get("operation");
 
             switch (operation) {
-                case "added" -> result.append("\n Property '").append(key)
+                case "added" -> result.append("\nProperty '").append(key)
                                       .append("' was added with value: ")
                                       .append(value2);
 
-                case "removed" -> result.append("\n Property '").append(key).append("' was removed ");
+                case "removed" -> result.append("\nProperty '").append(key).append("' was removed");
 
-                case "updated" -> result.append("\n Property '")
+                case "updated" -> result.append("\nProperty '")
                                         .append(key).append("' was updated. From ").append(value1)
                                         .append(" to ").append(value2);
 
@@ -30,7 +28,7 @@ public class Plain {
                 }
             }
         }
-        return String.valueOf(result.append("\n}"));
+        return String.valueOf(result).trim();
     }
 
     public static Object getValue(Object data) {
