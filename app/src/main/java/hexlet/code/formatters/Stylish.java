@@ -23,7 +23,7 @@ public class Stylish {
                 case "updated" -> result.append("\n  - ").append(key).append(": ").append(value1)
                                         .append("\n  + ").append(key).append(": ").append(value2);
 
-                default -> result.append("\n   ").append(key).append(": ").append(value2);
+                default -> result.append("\n    ").append(key).append(": ").append(value2);
             }
         }
 
